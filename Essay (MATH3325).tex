@@ -6,13 +6,15 @@
 \section{Background}
 Introduction: Want an analogous decomposition to compact separable. Will focus on complex mostly, and discuss real at end. Develop functional calculi for operators. Proof involves spectral theorem for normal operators quite heavily.
 
-Notation: $B(H)$ for bounded operators, $H$ Hilbert space, $H_\lambda$ the eigenspace, $\Borel(X)$ for Borel $\sigma$-algebra. 
+Notation: $B(H)$ for bounded operators, $H$ Hilbert space, $\Borel(X)$ for Borel $\sigma$-algebra. 
 
 Denote the set of complex-measurable functions on a space $Y$ by $\M(Y)$, and the bounded complex-measurable functions by $\M_\infty(Y)$. 
 \section{Unbounded operators}
+We give some basic definitions and properties of unbounded operators. Most of the proofs are elementary, and so will be omitted, and these can be found in \ref{meisevogt}.
+
 An \textbf{unbounded operator $T$} on a Hilbert space $H$ is a linear map defined on a linear subspace $D(T)$ of $H$, and taking values in $H$. In this case, $D(T)$ is the \textbf{domain} of $T$, and we write $N(T) \defeq \set{x \in D(T) \mid Tx = 0}$, $R(T) \defeq \set{Tx \mid x \in D(T)}$ and $G(T) \defeq \set{(x, Tx) \in H \times H \mid x \in D(T)}$ for the \textbf{null space}, \textbf{range} and \textbf{graph of $T$} respectively. We say that $T$ \textbf{extends} $S$ if $D(S) \subseteq D(T)$ and $T|_{D(S)} = S$, and write $S \subset T$ for this. We say $T$ is \textbf{densely defined} if $\ol{D(T)} = H$.
 
-Throughout the remaining sections, $H$ is understood to be a Hilbert space, and operators understood to be unbounded and on $H$ unless otherwise specified.
+Throughout the remaining sections, unless otherwise specified, $H$ is understood to be a complex Hilbert space, and operators understood to be unbounded and on $H$.
 \begin{lemma}
     Let $T$ be a densely defined operator. Then
     \begin{enumerate}
@@ -93,16 +95,16 @@ The Cayley transform yields the following correspondence between unbounded self-
 
 
 \section{Functional calculi}
-A \textbf{$\mathbf{C^*}$-algebra} $X$ is an associative $\C$-algebra with unit $e$ and a Banach space, such that $\norm{xy} \leq \norm{x}\norm{y}$ for all $x$ and $y$, with an antilinear map $* : X \to X$ such that $x^{**} = x$, $(xy)^* = y^*x^*$, and $\norm{x^*x} = \norm{x^*}\norm{x}$. If $X$ and $Y$ are $C^*$-algebras, a bounded linear map $\varphi : X \to Y$ is a \textbf{$\mathbf{*}$-homomorphism} if $\varphi(xy) = \varphi(x)\varphi(y)$ and $\varphi(x^*) = \varphi(x)^*$ for all $x$ and $y$. %, and a \textbf{$\mathbf{*}$-isomorphism} if it is invertible, and its inverse is a $*$-homomorphism. % For $a \in A$, we say $a$ is \textbf{normal} if $a^*a = aa^*$, and \textbf{invertible} if there is $b \in A$ with $ab = ba = e$. We define its \textbf{spectrum} as $\sigma(a) = \set{x \in \C \mid xa - e \text{ is invertible}}$.
+A \textbf{$\mathbf{C^*}$-algebra} $X$ is an associative $\C$-algebra with unit $e$ and a Banach space, such that $\norm{xy} \leq \norm{x}\norm{y}$ for all $x$ and $y$, with an antilinear map $* : X \to X$ such that $x^{**} = x$, $(xy)^* = y^*x^*$, and $\norm{x^*x} = \norm{x^*}\norm{x}$. If $X$ and $Y$ are $C^*$-algebras, $\varphi \in B(X, Y)$ is a \textbf{$\mathbf{*}$-homomorphism} if $\varphi(xy) = \varphi(x)\varphi(y)$ and $\varphi(x^*) = \varphi(x)^*$ for all $x$ and $y$. %, and a \textbf{$\mathbf{*}$-isomorphism} if it is invertible, and its inverse is a $*$-homomorphism. % For $a \in A$, we say $a$ is \textbf{normal} if $a^*a = aa^*$, and \textbf{invertible} if there is $b \in A$ with $ab = ba = e$. We define its \textbf{spectrum} as $\sigma(a) = \set{x \in \C \mid xa - e \text{ is invertible}}$.
 % $C^*$-algebra; $*$-homomorphism/isomorphism
-If $X \subseteq \R$ is compact, we say a map $\Psi : \M_\infty(X) \to B(H)$ is \textbf{w-continuous} if for any $x, y \in H$ and $(f_n)_{n \in \N}$ uniformly bounded and pointwise convergent to $f$, we have $\lrangle{\Psi(f_n)x, y} \to \lrangle{\Psi(f)x, y}$.
+If $X \subseteq \C$ is compact, we say a map $\Psi : \M_\infty(X) \to B(H)$ is \textbf{w-continuous} if for any $x, y \in H$ and $(f_n)_{n \in \N}$ uniformly bounded and pointwise convergent to $f$, we have $\lrangle{\Psi(f_n)x, y} \to \lrangle{\Psi(f)x, y}$.
 
 This notion of w-continuity is similar to weak continuity we have seen, in that we are testing convergence of $\Psi(f_n)$ to $\Psi(f)$ pointwise and with respect to the inner product. We state a result without proof which we will need in order to define and reason about the functional calculus of an operator. Note that $\M_\infty(X)$ is a commutative $C^*$-algebra for any $X$, by taking pointwise operations, the sup-norm, and $f^* = \ol f$ the pointwise conjugate.
 \begin{proposition}\label{funccalc}
     If $T \in B(H)$ is normal, there is a unique w-continuous $*$-homomorphism $\Psi : \M_\infty(\sigma(T)) \to B(H)$ with $\Psi(z) = T$. Further, 
     \begin{enumerate}
         \item $\Psi$ is continuous with $\norm{\Psi} = 1$;
-        \item the image of $\Psi$ consists of normal operators which commute with one another, and $\Psi(f)$ is self-adjoint whenever $f$ is real-valued;
+        \item $R(\Psi)$ consists of normal operators which commute with one another, and $\Psi(f)$ is self-adjoint whenever $f$ is real-valued;
         \item $\Psi(\chi_M)$ is orthogonal projection for each $M \in \Borel(\sigma(T))$.
     \end{enumerate}
 \end{proposition}
@@ -185,7 +187,7 @@ It will be convenient to characterise the spectrum of $\int f dE$ in terms of $f
     $$
 \end{proposition}
 \begin{proof}
-    First, $M \defeq f^{-1}(\essim_E(f)) \in \Borel(Y)$ has $I = E(M) + E(M^c) = \psi(\chi_M)$ by definition of the essential range. For $\lambda \not\in \essim_E(f)$, let $g : Y \to \C$ be the map $z \mapsto \frac{\chi_M(z)}{\lambda - f(z)}$; we have $g \cdot (\lambda - f) = (\lambda - f) \cdot g = \chi_M$, so by $(2)$ of the previous proposition, as $\psi(g) \in B(H)$ and $\psi(\lambda - f) = \lambda I - \int f dE$, we have
+    First, $M \defeq f^{-1}(\essim_E(f)) \in \Borel(Y)$ has $I = E(M) + E(\C \setminus M) = \psi(\chi_M)$ by definition of the essential range. For $\lambda \not\in \essim_E(f)$, let $g : Y \to \C$ be the map $z \mapsto \frac{\chi_M(z)}{\lambda - f(z)}$; we have $g \cdot (\lambda - f) = (\lambda - f) \cdot g = \chi_M$, so by $(2)$ of the previous proposition, as $\psi(g) \in B(H)$ and $\psi(\lambda - f) = \lambda I - \int f dE$, we have
     $$
         \psi(g)\brac{\lambda I - \int f dE} \subset \brac{\lambda I - \int f dE}\psi(g) = \psi(\chi_M) = I
     $$ % Essential - $\psi$ has norm 1.
