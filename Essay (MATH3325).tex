@@ -26,19 +26,13 @@ Throughout the remaining sections, $H$ is understood to be a Hilbert space, and 
 \begin{definition}[Adjoint]
     The \textbf{adjoint} of a densely defined operator $T$ is the operator $T^*$ as defined above. 
 \end{definition}
-
 % Lemma 19.3
 We will want to consider [[certain class of operators because ???]]
 \begin{definition}
-    An operator $T$ is \textbf{closed} if $G(T) \subseteq H \times H$ is closed, and \textbf{closable} if there is a closed operator $T'$ with $T \subset T'$. If $T$ is closable, the operator $\ol{T}$ with $G(\ol{T}) = \ol{G(T)}$ is called the \textbf{closure} of $T$. \textbf{[[closure redundant?]]}
+    An operator $T$ is \textbf{closed} if $G(T) \subseteq H \times H$ is closed.
 \end{definition}
 \begin{proposition}
-    Let $T$ be a densely defined operator. Then
-    \begin{enumerate}
-        \item $T^*$ is closed, and $N(T^*) = R(T)^\perp$;
-        \item $T^*$ is densely defined if and only if $T$ is closable; and 
-        \item if $T$ is closable, then $\ol T = T^{**}$
-    \end{enumerate}
+    If $T$ be a densely defined operator, then $T^*$ is closed, and $N(T^*) = R(T)^\perp$.
 \end{proposition}
 \begin{proof}
     Define an inner product on $H \times H$ by $\lrangle{(x_1, y_1), (x_2, y_2)}_{H \times H} = \lrangle{x_1, x_2}_H + \lrangle{y_1, y_2}_H$. For the unitary operator $U \in B(H \times H)$ given by $U(x, y) = (y, -x)$, we have $(y, z) \in G(T^*)$ if and only if 
@@ -46,10 +40,6 @@ We will want to consider [[certain class of operators because ???]]
         0 = \lrangle{x, z}_H - \lrangle{Tx, y}_H = \lrangle{(x, Tx), (-z, y)}_{H \times H} = \lrangle{(x, Tx), U^{-1}(y, z)}_{H \times H} = \lrangle{U(x, Tx), (y, z)}_{H \times H}
     $$
     for all $x \in D(T)$, so $G(T^*) = U(G(T))^\perp$ is closed. The second part of the statement follows as $T^*y = 0$ if and only if $\lrangle{Tx, y} = 0$ for all $x \in D(T)$.
-
-    Since $U$ is unitary with $U^2 = -I$ and $G(T^*) = U(G(T))^\perp$, we have $\ol{G(T)} = G(T)^{\perp\perp} = U(G(T^*))^\perp$. $\ol{G(T)}$ is the graph of an operator if and only if $\ol{G(T)} \cap (\set{0} \times H) = \set{(0, 0)}$, and $(0, x) \in \ol{G(T)}$ if and only if $0 = \lrangle{(0, x), (-A^*y, y)} = \lrangle{x, y}$ for all $y \in D(T^*)$. In particular, $T$ is closable if and only if $D(T^*)^\perp = \set{0}$.
-
-    When $T$ is closable, we have $G(\ol{T}) = \ol{G(T)} = G(T)^{\perp\perp} = U(G(T^*)) = G(T^{**})$.
 \end{proof}
 We now look to define the sum, composition and inverse of operators, and in doing so, we need to be careful of domains.
 \begin{definition}
