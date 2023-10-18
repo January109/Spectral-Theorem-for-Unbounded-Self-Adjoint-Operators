@@ -4,17 +4,25 @@
 \begin{document}
 \maketitle
 \section{Background}
+We want to find a decomposition for general 
+
+
+
+For a compact, self-adjoint operator $T$ on a Hilbert space $H$, we have a decomposition into orthogonal projections $T = \sum_{n \in \N}\lambda_n P_{E_n}$ for mutually orthogonal finite-dimensional subspaces $E_n$, and 
+
+Key points: For compact self-adjoint, eigenvalue/orthogonal projection decomposition; Develop functional calculi, tool for converting measurable functions on spectrum into operators; polynomials become polynomials in $T$; Cayley transform gives correspondence with (bounded) unitary operators, so will rely quite heavily on bounded normal case.
+
 Introduction: Want an analogous decomposition to compact separable. Will focus on complex mostly, and discuss real at end. Develop functional calculi for operators. Proof involves spectral theorem for normal operators quite heavily.
 
 Notation: $B(H)$ for bounded operators, $H$ Hilbert space, $\Borel(X)$ for Borel $\sigma$-algebra. 
 
 Denote the set of complex-measurable functions on a space $Y$ by $\M(Y)$, and the bounded complex-measurable functions by $\M_\infty(Y)$. 
 \section{Unbounded operators}
-We give some basic definitions and properties of unbounded operators. Most of the proofs are elementary, and so will be omitted, and these can be found in \ref{meisevogt}.
+We give some basic definitions and properties of unbounded operators. Most of the proofs in this section are elementary, and so will either be omitted or given a brief sketch, and the full proofs can be found in \ref{meisevogt}.
 
 An \textbf{unbounded operator $T$} on a Hilbert space $H$ is a linear map defined on a linear subspace $D(T)$ of $H$, and taking values in $H$. In this case, $D(T)$ is the \textbf{domain} of $T$, and we write $N(T) \defeq \set{x \in D(T) \mid Tx = 0}$, $R(T) \defeq \set{Tx \mid x \in D(T)}$ and $G(T) \defeq \set{(x, Tx) \in H \times H \mid x \in D(T)}$ for the \textbf{null space}, \textbf{range} and \textbf{graph of $T$} respectively. We say that $T$ \textbf{extends} $S$ if $D(S) \subseteq D(T)$ and $T|_{D(S)} = S$, and write $S \subset T$ for this. We say $T$ is \textbf{densely defined} if $\ol{D(T)} = H$.
 
-Throughout the remaining sections, unless otherwise specified, $H$ is understood to be a complex Hilbert space, and operators understood to be unbounded and on $H$.
+Throughout the remaining sections, unless otherwise specified, $H$ is understood to be a \emph{complex} Hilbert space, and operators understood to be unbounded and on $H$. % Change - any Hilbert space here, complex laterstill re
 \begin{lemma}
     Let $T$ be a densely defined operator. Then
     \begin{enumerate}
@@ -29,58 +37,53 @@ Throughout the remaining sections, unless otherwise specified, $H$ is understood
     The \textbf{adjoint} of a densely defined operator $T$ is the operator $T^*$ as defined above. 
 \end{definition}
 % Lemma 19.3
-We establish the basic properties of 
-
-We will want to consider [[certain class of operators because ???]]
+It is also clear from the above definitions that if $S \subset T$, then $T^* \subset S^*$. We will be interested in the following class of operators, which will correspond to having closed spectrum.
 \begin{definition}
     An operator $T$ is \textbf{closed} if $G(T) \subseteq H \times H$ is closed.
 \end{definition}
-\begin{proposition}
+This relates to adjoints in the following way:
+\begin{proposition}\label{adjclosed}
     If $T$ be a densely defined operator, then $T^*$ is closed, and $N(T^*) = R(T)^\perp$.
 \end{proposition}
 \begin{proof}
-    Define an inner product on $H \times H$ by $\lrangle{(x_1, y_1), (x_2, y_2)}_{H \times H} = \lrangle{x_1, x_2}_H + \lrangle{y_1, y_2}_H$. For the unitary operator $U \in B(H \times H)$ given by $U(x, y) = (y, -x)$, we have $(y, z) \in G(T^*)$ if and only if $0 = \lrangle{x, z}_H - \lrangle{Tx, y}_H = \lrangle{(x, Tx), (-z, y)}_{H \times H} = \lrangle{(x, Tx), U^{-1}(y, z)}_{H \times H} = \lrangle{U(x, Tx), (y, z)}_{H \times H}$
-    for all $x \in D(T)$, so $G(T^*) = U(G(T))^\perp$ is closed. The latter part follows as $T^*y = 0$ if and only if $\lrangle{Tx, y} = 0$ for all $x \in D(T)$.
+    Define an inner product on $H \times H$ by $\lrangle{(x_1, y_1), (x_2, y_2)}_{H \times H} = \lrangle{x_1, x_2}_H + \lrangle{y_1, y_2}_H$. Then for $U \in B(H \times H)$ given by $U(x, y) = (y, -x)$, we have $(y, z) \in G(T^*)$ if and only if $0 = \lrangle{U(x, Tx), (y, z)}_{H \times H}$ for all $x \in D(T)$, so $G(T^*) = U(G(T))^\perp$ is closed. The latter part follows as $T^*y = 0$ if and only if $\lrangle{Tx, y} = 0$ for all $x \in D(T)$.
 \end{proof}
-We now look to define the sum, composition and inverse of operators, and in doing so, we need to be careful of domains.
+We now extend sums, compositions and inverses to unbounded operators, being careful of domains in doing so.
 \begin{definition}
     Let $S$ and $T$ be operators. Then $S + T$ and $ST$ are the operators with domains $D(S + T) = D(S) \cap D(T)$ and $D(ST) = \set{x \in D(T) \mid Tx \in D(S)}$, and $(S + T)(x) \defeq S(x) + T(x)$, $(ST)(x) = S(T(x))$. If $T$ is injective, its inverse $T^{-1}$ has $D(T^{-1}) = R(T)$, and sends $Tx$ to $x$.
 \end{definition}
+These operators have the following properties with regards to closedness and adjoints. % Reword this to be better
 \begin{lemma}
     Let $S$ and $T$ be operators. Then
     \begin{enumerate}
         \item if $S$ is closed and $T \in B(H)$, then $S + T$ and $S^{-1}$ are closed;
-        \item if $S + T$ is densely defined, then $S^* + T^* \subseteq (S + T)^*$, with equality if $T \in B(H)$.
+        \item if $S + T$ is densely defined, then $S^* + T^* \subset (S + T)^*$, with equality if $T \in B(H)$.
     \end{enumerate}
 \end{lemma}
-\begin{proof}
-    For (1), if $(x_n, (S + T)(x_n)) \to (x, y)$ in $H \times H$, then $T(x_n) \to T(x)$, so $S(x_n) \to y - T(x)$, and so $x \in D(S) = D(S + T)$ and $(S + T)(x) = y$; the latter part follows as $G(S^{-1}) = \set{(S(x), x) \mid x \in H}$. (2) follows as $\lrangle{(S + T)(x), y} = \lrangle{x, (S^* + T^*)(y)}$ for $y \in D(S^* + T^*)$, and $\lrangle{S(x), y} = \lrangle{x, (S + T)^*(y)} - \lrangle{x, T^*(y)}$ when $T \in B(H)$.
-\end{proof}
 % give commentary on spectra
+For spectra of unbounded operators, the resolvent will also require having image $H$, on top of being bijective.
 \begin{definition}
     Let $H$ be a Hilbert space over $F = \R$ or $\C$, and $T$ be an operator on $H$. The \textbf{resolvent set} of $T$ is $\rho(T) \defeq \set{z \in F \mid N(zI - T) = 0, R(zI - T) = H}$, and the \textbf{spectrum} of $T$ is $\sigma(T) \defeq F \setminus \rho(T)$.
 \end{definition}
+Although we have given the general definition, we will almost always work over complex Hilbert spaces, except for a brief discussion of the spectral theorem over a real Hilbert space. The spectrum of a closed operator has the following properties.
 \begin{proposition}\label{closedprops}
-    Let $T$ be a closed operator. Then $(zI - T)^{-1} \in B(H)$ for every $z \in \rho(T)$; $\sigma(T)$ is closed; and if $\sigma(T) = \emptyset$, then $T^{-1} \in B(H)$ and $\sigma(T^{-1}) = \set{0}$.
+    Let $T$ be a closed operator. Then $(zI - T)^{-1} \in B(H)$ for every $z \in \rho(T)$; $\sigma(T)$ is closed.
 \end{proposition}
 \begin{proof}
-    Each $zI - T$ is closed by above, and for $z \in \rho(T)$, $(zI - T)^{-1}$ has domain $H$ and closed graph, so is continuous by the closed graph theorem. If $z_0 \in \rho(T)$, then for $\abs{z - z_0} < \norm{(z_0I - T)^{-1}}^{-1}$, $\norm{(z - z_0)(z_0I - T)^{-1}} < 1$, so $(z - z_0)(z_0I - T)^{-1} + I \in B(H)$ is invertible, and so $zI - T = ((z - z_0)(z_0I - T)^{-1} + I)(z_0I - T)$ is injective and surjective. We have $\sigma(T) \subseteq \set{0}$ since $zI - T = -z(z^{-1}I - T)T^{-1}$ for $z \neq 0$, and $\sigma(T) \neq \emptyset$ for $T \in B(H)$, since otherwise $\norm{(T - \lambda I)^{-1}} \leq (\abs{\lambda} - \norm{T})^{-1} \xrightarrow{\lambda \to \infty} 0$, so for $\phi \in B(H)^*$ with $\phi(T^{-1}) \neq 0$, $f : \C \to \C$ given by $f(z) = \phi((T - z I)^{-1})$ is holomorphic and tends to 0 as $z \to \infty$, so must be identically zero by Liouville's theorem. 
+    Each $zI - T$ is closed by above, and for $z \in \rho(T)$, $(zI - T)^{-1}$ has domain $H$ and closed graph, so is continuous by the closed graph theorem. If $z_0 \in \rho(T)$, for $\abs{z - z_0}\norm{(z_0I - T)^{-1}} < 1$, $(z - z_0)(z_0I - T)^{-1} + I \in B(H)$ is invertible, and so $zI - T = ((z - z_0)(z_0I - T)^{-1} + I)(z_0I - T)$ is injective and with range $H$.
 \end{proof}
 % closed implies $(zI - T)^{-1}$ bounded for all $z \in \rho(T)$.
-We will be interested in self-adjoint operators on $H$:
+We will be interested in self-adjoint operators on $H$.
 \begin{definition}
     A densely defined operator $T$ is \textbf{self-adjoint} if $T = T^*$.
 \end{definition}
-[[something something establish properties of spectrum]]
+By proposition \ref{adjclosed}, self-adjoint operators are closed. We have a slightly stronger statement about the spectrum of such operators:
 \begin{lemma}
     If $T$ is self-adjoint, $\sigma(T)$ is a non-empty subset of $\R$.
 \end{lemma}
-\begin{proof}
-    For $z = a + bi \in \C \setminus \R$, $zI - T$ is closed by \textbf{lemma 2 (1)}, and $\norm{((a + bi)I - T)(x)}^2 = \norm{(aI - T)(x)}^2 + b^2\norm{x}^2 \geq b^2\norm{x}^2$. Thus $zI - T$ and $\ol zI - T$ are injective, so by \textbf{lemma 2 (2)} we have $R(zI - T)^\perp = N((zI - T)^*) = N(\ol z I - T) = \set{0}$, so $R(zI - T) = H$ as it is closed, and so $\C \setminus \R \subseteq \rho(T)$. If $\sigma(T) = \emptyset$, $T^{-1} \in B(H)$ is self-adjoint with $\sigma(T^{-1}) = \set{0}$ by \textbf{proposition 3}, so $\norm{T^{-1}} = r(T^{-1}) = 0$ by the spectral radius formula, a contradiction.
-\end{proof}
 In proving the spectral theorem for unbounded self-adjoint operators, we will use the following transform to reduce to the bounded, normal case. The above result shows that $\pm iI - T$ is injective with domain $D(T)$ and range $H$ when $T$ is self-adjoint, so the operator defined below is well-defined.
 \begin{definition}
-    Let $T$ be self-adjoint. The operator $U = U(T) \defeq (iI - T)(-iI - T)^{-1} \in B(H)$ is the \textbf{Cayley transform} of $T$.
+    Let $T$ be self-adjoint. The operator $U = \U(T) \defeq (iI - T)(-iI - T)^{-1} \in B(H)$ is the \textbf{Cayley transform} of $T$.
 \end{definition}
 The Cayley transform yields the following correspondence between unbounded self-adjoint operators and unitary operators on $H$.
 \begin{proposition}\label{corresp}
@@ -92,40 +95,42 @@ The Cayley transform yields the following correspondence between unbounded self-
 % 20.2. (+ sa implies closed), 20.3; 20.5 (one-line), 20.6 + 20.7
 % Unbounded / Symmetric operators (19.1 - 19.11) -- One-line sketches (key identities).
 % Resolutions of the identity
-
-
+Having established this correspondence, we state a result on the spectrum of a unitary operator, which we will need later.
+\begin{proposition}
+    Let $U \in B(H)$ be unitary. Then $\sigma(U) \subseteq S^1$.
+\end{proposition}
 \section{Functional calculi}
 A \textbf{$\mathbf{C^*}$-algebra} $X$ is an associative $\C$-algebra with unit $e$ and a Banach space, such that $\norm{xy} \leq \norm{x}\norm{y}$ for all $x$ and $y$, with an antilinear map $* : X \to X$ such that $x^{**} = x$, $(xy)^* = y^*x^*$, and $\norm{x^*x} = \norm{x^*}\norm{x}$. If $X$ and $Y$ are $C^*$-algebras, $\varphi \in B(X, Y)$ is a \textbf{$\mathbf{*}$-homomorphism} if $\varphi(xy) = \varphi(x)\varphi(y)$ and $\varphi(x^*) = \varphi(x)^*$ for all $x$ and $y$. %, and a \textbf{$\mathbf{*}$-isomorphism} if it is invertible, and its inverse is a $*$-homomorphism. % For $a \in A$, we say $a$ is \textbf{normal} if $a^*a = aa^*$, and \textbf{invertible} if there is $b \in A$ with $ab = ba = e$. We define its \textbf{spectrum} as $\sigma(a) = \set{x \in \C \mid xa - e \text{ is invertible}}$.
 % $C^*$-algebra; $*$-homomorphism/isomorphism
-If $X \subseteq \C$ is compact, we say a map $\Psi : \M_\infty(X) \to B(H)$ is \textbf{w-continuous} if for any $x, y \in H$ and $(f_n)_{n \in \N}$ uniformly bounded and pointwise convergent to $f$, we have $\lrangle{\Psi(f_n)x, y} \to \lrangle{\Psi(f)x, y}$.
+If $X \subseteq \C$ is compact, we say a map $\Psi : \M_\infty(X) \to B(H)$ is \textbf{weakly-continuous} if for any $x, y \in H$ and $(f_n)_{n \in \N}$ uniformly bounded and pointwise convergent to $f$, we have $\lrangle{\Psi(f_n)x, y} \to \lrangle{\Psi(f)x, y}$.
 
-This notion of w-continuity is similar to weak continuity we have seen, in that we are testing convergence of $\Psi(f_n)$ to $\Psi(f)$ pointwise and with respect to the inner product. We state a result without proof which we will need in order to define and reason about the functional calculus of an operator. Note that $\M_\infty(X)$ is a commutative $C^*$-algebra for any $X$, by taking pointwise operations, the sup-norm, and $f^* = \ol f$ the pointwise conjugate.
+This notion of weak continuity is similar to weak properties we have seen, in that we are testing convergence pointwise and with respect to the inner product. We look to define the functional calculus of an operator, which associates measurable functions to operators on $H$ in a way compatible with $T$. For $X \subseteq \C$ compact, $\M_\infty(X)$ is a commutative $C^*$-algebra, by taking pointwise operations, the sup-norm, and $f^* = \ol f$ the pointwise conjugate.
 \begin{proposition}\label{funccalc}
-    If $T \in B(H)$ is normal, there is a unique w-continuous $*$-homomorphism $\Psi : \M_\infty(\sigma(T)) \to B(H)$ with $\Psi(z) = T$. Further, 
+    If $T \in B(H)$ is normal, then there is a unique weakly-continuous $*$-homomorphism $\Psi : \M_\infty(\sigma(T)) \to B(H)$ with $\Psi(z) = T$. Further, 
     \begin{enumerate}
         \item $\Psi$ is continuous with $\norm{\Psi} = 1$;
-        \item $R(\Psi)$ consists of normal operators which commute with one another, and $\Psi(f)$ is self-adjoint whenever $f$ is real-valued;
+        \item $R(\Psi)$ consists of normal operators which commute with one another, and $\Psi(f)$ is self-adjoint for $f$ real-valued;
         \item $\Psi(\chi_M)$ is orthogonal projection for each $M \in \Borel(\sigma(T))$.
     \end{enumerate}
 \end{proposition}
 \begin{definition}
     The \textbf{functional calculus} of a normal operator $T$ is the operator in the proposition above.
 \end{definition}
-Additional background: $T$ unitary iff $\sigma(T) \subseteq S^1$. Spectral radius somewhere ($r(A) = \norm{A}$ if $A \in B(H)$ is normal)
+% Additional background: $T$ unitary iff $\sigma(T) \subseteq S^1$. Spectral radius somewhere ($r(A) = \norm{A}$ if $A \in B(H)$ is normal)
 
-Functional calculi -- Proposition 17.21 (give explicitly)
+% Functional calculi -- Proposition 17.21 (give explicitly)
 
 % [[Give commentary]]
 % \begin{proposition}[17.21 in \textbf{Meise-Vogt}]
 %     Let $A$ be a $C^*$-algebra, and $a \in A$ be normal. Then there is a unique isometric $*$-homomorphism $\Phi : C(\sigma(a)) \to A$ with $\Phi(z) = a$.
 % \end{proposition}
-prop 18.3
+% prop 18.3
 
-spectral radius formula (normal case)
+% spectral radius formula (normal case)
 
 \section{Spectral Measures}
 \begin{definition}
-    Let $Y \subseteq \C$, and $H$ be a real or complex Hilbert space. A \textbf{spectral measure} on $Y$ is a map $E : \Borel(Y) \to B(H)$ such that
+    Let $F = \R$ or $\C$, $Y \subseteq F$, and $H$ be a Hilbert space over $F$. A \textbf{spectral measure} on $Y$ is a map $E : \Borel(Y) \to B(H)$ such that
     \begin{enumerate}
         \item $E(M)$ is an orthogonal projection for each $M \in \Borel(Y)$; $E(\emptyset) = 0$ and $E(Y) = I$;
         \item $E(M_1 \cap M_2) = E(M_1)E(M_2)$ for all $M_i \in B(Y)$;
@@ -143,7 +148,7 @@ Throughout the remaining results, $Y \subseteq \C$ is a fixed subset, and $E$ is
     Further, the map $\psi_0 : f \mapsto \int f dE$ is a $*$-homomorphism $\psi_0 : \M_\infty(Y) \to B(H)$.
 \end{lemma}
 \begin{proof}
-    For a simple function $f = \sum_{j = 1}^n \lambda_j \chi_{M_j}$, $\int f dE_{x, x} = \sum_{j = 1}^n\lambda_j\lrangle{E(M_j)x, x} = \lrangle{\sum_{j = 1}^n \lambda_j E(M_j)x, x}$. Since an operator $T$ on a complex Hilbert space is determined by the values of $\lrangle{T(x), x}$, $\sum_{j = 1}^n \lambda_j E(M_j)$ is the unique operator satisfying (1), so the map $\psi_0$ on simple functions sending $\sum_{j = 1}^n \lambda_j \chi_{M_j} \mapsto \sum_{j = 1}^n \lambda_j E(M_j)$ is well-defined. We can check the $*$-homomorphism properties on simple functions, from which it follows that $\norm{\psi_0(f)x}^2 = \lrangle{\psi_0(f)^*\psi_0(f)x, x} = \int \abs{f}^2 dE_{x, x}$. $\psi_0$ is then continuous as $\norm{\psi_0(f)x}^2 \leq \norm{f}^2_\infty E_{x, x}(Y) = \norm{f}_\infty^2\norm{x}^2$, so extends continuously to a map on $\M_\infty(Y)$, which has the desired properties by taking limits with w-continuity.
+    For a simple function $f = \sum_{j = 1}^n \lambda_j \chi_{M_j}$, we have $\int f dE_{x, x} = \sum_{j = 1}^n\lambda_j\lrangle{E(M_j)x, x} = \lrangle{\sum_{j = 1}^n \lambda_j E(M_j)x, x}$. Since an operator $T$ on a complex Hilbert space is determined by the values of $\lrangle{T(x), x}$, $\sum_{j = 1}^n \lambda_j E(M_j)$ is the unique operator satisfying (1), so the map $\psi_0$ on simple functions sending $\sum_{j = 1}^n \lambda_j \chi_{M_j} \mapsto \sum_{j = 1}^n \lambda_j E(M_j)$ is well-defined. We can check the $*$-homomorphism properties on simple functions, from which it follows that $\norm{\psi_0(f)x}^2 = \lrangle{\psi_0(f)^*\psi_0(f)x, x} = \int \abs{f}^2 dE_{x, x}$. $\psi_0$ is then continuous as $\norm{\psi_0(f)x}^2 \leq \norm{f}^2_\infty E_{x, x}(Y) = \norm{f}_\infty^2\norm{x}^2$, so extends continuously to a map on $\M_\infty(Y)$, which has the desired properties by taking limits with weak-continuity.
 \end{proof}
 We extend this to all unbounded operators and measurable functions $f$ by taking sequences in $\M_\infty(Y)$ which are $L^2(Y, E_{x, x})$ and pointwise convergent, and for fixed $f \in \M(Y)$ we write $Y_{f, n} = \set{y \in Y \mid \abs{f(y)} \leq n}$.
 \begin{proposition}\label{unbdint}
@@ -164,9 +169,9 @@ We extend this to all unbounded operators and measurable functions $f$ by taking
 
     We can thus compute $\norm{\psi(f)x}^2 = \int \abs{f}^2dE_{x, x}$ and $\lrangle{\psi(f)x, x} = \int f dE_{x. x}$ by taking limits with $f_n \to f$, noting that $f \in L^1(Y, E_{x, x})$ since $E_{x, x}$ is a finite-valued measure.
 \end{proof}
-As with lemma \ref{bdint}, we will write $\int f dE$ for $\psi(f)$ as in proposition \ref{unbdint}. This notion of an integral has the following properties:
+As in lemma \ref{bdint}, we will write $\int f dE$ for $\psi(f)$ as above. This notion of an integral has the following properties:
 \begin{proposition}\label{psiprops}
-    Let $E$ be a spectral measure on $Y$, and for $f \in \M(Y)$, $\psi(f) = \int f dE$ be as above. Then for $f, g \in \M(Y)$,
+    Let $E$ be a spectral measure on $Y$, $f \in \M(Y)$ and $\psi(f) = \int f dE$ be as above. Then for $f, g \in \M(Y)$,
     \begin{enumerate}
         \item $\psi(f) + \psi(g) \subset \psi(f + g)$;
         \item $\psi(f)\psi(g) \subset \psi(fg)$, and $D(\psi(f)\psi(g)) = D(\psi(g)) \cap D(\psi(fg))$. In particular, $D(\psi(f)\psi(g)) = D(\psi(fg))$ whenever $D(\psi(g)) = H$; and
@@ -187,11 +192,10 @@ It will be convenient to characterise the spectrum of $\int f dE$ in terms of $f
     $$
 \end{proposition}
 \begin{proof}
-    First, $M \defeq f^{-1}(\essim_E(f)) \in \Borel(Y)$ has $I = E(M) + E(\C \setminus M) = \psi(\chi_M)$ by definition of the essential range. For $\lambda \not\in \essim_E(f)$, let $g : Y \to \C$ be the map $z \mapsto \frac{\chi_M(z)}{\lambda - f(z)}$; we have $g \cdot (\lambda - f) = (\lambda - f) \cdot g = \chi_M$, so by $(2)$ of the previous proposition, as $\psi(g) \in B(H)$ and $\psi(\lambda - f) = \lambda I - \int f dE$, we have
-    $$
-        \psi(g)\brac{\lambda I - \int f dE} \subset \brac{\lambda I - \int f dE}\psi(g) = \psi(\chi_M) = I
-    $$ % Essential - $\psi$ has norm 1.
-    and thus $\lambda \in \rho\brac{\int f dE}$. Letting $Y_\lambda = f^{-1}(\set\lambda)$, any $x \in R(E(Y_\lambda))$ has $\psi(f)x = \lambda x$ as $f\chi_{Y_\lambda} = \lambda\chi_{Y_\lambda}$. Thus for $\lambda \in \essim_E(f)$, if $E(Y_\lambda) \neq 0$ we are done, and if $E(Y_\lambda) = 0$, letting $M_n = f^{-1}(B(\lambda, 1/n)) = \set{y \in Y \mid \abs{\lambda - f(y)} < 1/n}$, we must have $E(M_n) \neq 0$. Choosing $x_n \in R(E(M_n))$ with $\norm{x_n} = 1$, we get $\norm{\lambda x_n - \int f dE x_n} = \norm{\psi(\lambda - f)}\norm{x_n} \leq \norm{\lambda - f}_\infty \leq 1/n$, so $\brac{\lambda I - \int f dE}x_n \to 0$. Now if $\lambda \in \rho\brac{\int f dE}$, then since $\lambda I - \int f dE$ is closed by proposition \ref{psiprops}, $\brac{\lambda I - \int f dE}^{-1} \in B(H)$ by lemma \ref{closedprops}, and we would have $x_n = \brac{\lambda I - \int f dE}^{-1}\brac{\lambda I - \int f dE}x_n \to 0$. Since $\norm{x_n} = 1$ this is not possible, so $\lambda \in \sigma\brac{\int f dE}$.
+    First, $M \defeq f^{-1}(\essim_E(f)) \in \Borel(Y)$ has $I = E(M) + E(\C \setminus M) = \psi(\chi_M)$ by definition of the essential range. For $\lambda \not\in \essim_E(f)$, let $g : Y \to \C$ be the map $z \mapsto \frac{\chi_M(z)}{\lambda - f(z)}$; we have $g \cdot (\lambda - f) = (\lambda - f) \cdot g = \chi_M$, so by $(2)$ of the previous proposition, as $\psi(g) \in B(H)$ and $\psi(\lambda - f) = \lambda I - \int f dE$, we have $\psi(g)\brac{\lambda I - \int f dE} \subset \brac{\lambda I - \int f dE}\psi(g) = \psi(\chi_M) = I$ % Essential - $\psi$ has norm 1.
+    and thus $\lambda \in \rho\brac{\int f dE}$. 
+    
+    Letting $Y_\lambda = f^{-1}(\set\lambda)$, any $x \in R(E(Y_\lambda))$ has $\psi(f)x = \lambda x$ as $f\chi_{Y_\lambda} = \lambda\chi_{Y_\lambda}$. Thus for $\lambda \in \essim_E(f)$, if $E(Y_\lambda) \neq 0$ we are done, and if $E(Y_\lambda) = 0$, letting $M_n = f^{-1}(B(\lambda, 1/n)) = \set{y \in Y \mid \abs{\lambda - f(y)} < 1/n}$, we must have $E(M_n) \neq 0$. Choosing $x_n \in R(E(M_n))$ with $\norm{x_n} = 1$, we get $\norm{\lambda x_n - \int f dE x_n} = \norm{\psi(\lambda - f)}\norm{x_n} \leq \norm{\lambda - f}_\infty \leq 1/n$, so $\brac{\lambda I - \int f dE}x_n \to 0$. Now if $\lambda \in \rho\brac{\int f dE}$, then since $\lambda I - \int f dE$ is closed by proposition \ref{psiprops}, $\brac{\lambda I - \int f dE}^{-1} \in B(H)$ by lemma \ref{closedprops}, and we would have $x_n = \brac{\lambda I - \int f dE}^{-1}\brac{\lambda I - \int f dE}x_n \to 0$. Since $\norm{x_n} = 1$ this is not possible, so $\lambda \in \sigma\brac{\int f dE}$.
 \end{proof}
 
 We will want to use the correspondence we established in proposition \ref{corresp}, and to reduce to the bounded normal case we require the following.
@@ -215,16 +219,16 @@ We are almost ready to prove the spectral theorem. We sketch the theorem in the 
     Let $T \in B(H)$ be normal, and $\Psi : \M_\infty(\sigma(T)) \to B(H)$ be its functional calculus. Then $E : \Borel(\sigma(T)) \to B(H)$ given by $E(M) = \Psi(\chi_M)$ is the unique spectral measure on $\sigma(T)$ with $T = \int z dE$.
 \end{theorem}
 \begin{proof}
-    To show each $E_{x, x}$ defines a Radon measure, for each $x \in H$, define $\hat\mu_{x, x} \in \M_\infty(\sigma(T))^*$ by $f \mapsto \lrangle{\Psi(f)x, x}$. This is a functional as $\norm{\Psi} = 1$, and positive as for $f \in C(\sigma(A))$ and $f \geq 0$, $\sqrt{f} \in C(\sigma(A))$ and $\Psi(\sqrt{f})$ is self-adjoint, so $\hat\mu_{x, x}(f) = \norm{\Psi(\sqrt{f})x}^2 \geq 0$, and this extends to $\M_\infty(\sigma(T))$ by density. $\hat\mu_{x, x}$ thus defines a Radon measure by taking $\mu_{x, x}(M) = \hat\mu_{x, x}(\chi_M)$, and is $w$-continuous by Proposition \ref{funccalc}, so $\lrangle{\Psi(f)x, x} = \int f d\mu_{x, x}$, and thus $E_{x, x}(M) = \lrangle{\Psi(\chi_M)x, x} = \int \chi_M d_\mu{x, x} = \mu_{x, x}(M)$, so $E_{x, x}$ a Radon measure.
+    To show each $E_{x, x}$ defines a Radon measure, for each $x \in H$, define $\hat\mu_{x, x} \in \M_\infty(\sigma(T))^*$ by $f \mapsto \lrangle{\Psi(f)x, x}$. This is a functional as $\norm{\Psi} = 1$, and positive as for $f \in C(\sigma(A))$ and $f \geq 0$, $\sqrt{f} \in C(\sigma(A))$ and $\Psi(\sqrt{f})$ is self-adjoint, so $\hat\mu_{x, x}(f) = \norm{\Psi(\sqrt{f})x}^2 \geq 0$, and this extends to $\M_\infty(\sigma(T))$ by density. $\hat\mu_{x, x}$ thus defines a Radon measure by taking $\mu_{x, x}(M) = \hat\mu_{x, x}(\chi_M)$, and is weakly-continuous by Proposition \ref{funccalc}, so $\lrangle{\Psi(f)x, x} = \int f d\mu_{x, x}$, and thus $E_{x, x}(M) = \lrangle{\Psi(\chi_M)x, x} = \int \chi_M d_\mu{x, x} = \mu_{x, x}(M)$, so $E_{x, x}$ a Radon measure.
 
-    For uniqueness, if $F$ is a spectral measure with $T = \int z dF$, then $f \mapsto \int f dF$ is a $*$-homomorphism, agreeing with $\Psi$ on polynomials in $z$ and $\ol z$. As $\sigma(T)$ is compact, by Stone-Weierstrass this agrees with $\Psi$ on $C(\sigma(T))$. For each $x \in H$ and $O \subseteq \sigma(T)$ open, taking $(g_n)$ in $C(\sigma(T))$ bounded with $g_n(x) \to \chi_O(x)$ pointwise, the dominated convergence theorem gives $F_{x, x}(O) = E_{x, x}(O)$, and so the Radon measure $F_{x, x}$ coincides with $E_{x, x}$ for all $x \in H$, thus $F = E$.
+    For uniqueness, if $F$ is a spectral measure with $T = \int z dF$, then $f \mapsto \int f dF$ is a $*$-homomorphism, so agrees with $\Psi$ on polynomials in $z$ and $\ol z$. This extends to $C(\sigma(T))$ by Stone-Weierstrass, as $\sigma(T)$ is compact, and this in turn extends to $\chi_O$ for $O \subseteq \sigma(T)$ open, by taking $(g_n)$ in $C(\sigma(T))$ bounded with $g_n \to \chi_O$ pointwise and applying the dominated convergence theorem. Thus the Radon measures $F_{x, x}$ coincide with $E_{x, x}$ for all $x \in H$, thus $F = E$.
 \end{proof}
-We also give a lemma on relating the eigenvalue decomposition of a bounded normal operator to its spectral measure.
+We also give a lemma relating the eigenvalue decomposition of a bounded normal operator to its spectral measure.
 \begin{lemma}\label{bdnormaleigen}
     Let $T \in B(H)$ be normal, and $E$ be the spectral measure of $T$. Then $E(\set{\lambda})$ is orthogonal projection onto the eigenspace $H_\lambda \defeq N(\lambda I - T)$, and in particular $\lambda \in \sigma(T)$ is an eigenvalue if and only if $E(\set{\lambda}) \neq 0$.
 \end{lemma}
 \begin{proof}
-    Let $\Psi$ be the functional calculus of $T$. It suffices to show $R(E(\set{\lambda})) = H_\lambda$ since $E(\set\lambda)$ is an orthogonal projection. For $x \in R(E(\set{\lambda}))$, we compute $Tx = TE(\set\lambda)x = \Psi(z\chi_{\set\lambda}) = \psi(\lambda\chi_{\set\lambda}) = \lambda E(\set\lambda)x = \lambda x$. Conversely, for $x \in H_\lambda$, letting $M_n = \set{z \in \sigma(T) \mid \abs{z - \lambda} \geq 1/n}$, the functions $f_n : \sigma(T) \to \C$ given by $z \mapsto \chi_{M_n}(z)/(\lambda - z)$ are bounded and measurable, and so we have $E(M_n)x = \Psi(f_n)\Psi(\lambda - z)x = \Psi(f_n)(\lambda I - T)x = 0$. Since $E_{x, x}$ is a measure and $M_n \nearrow \sigma(T) \setminus \set\lambda$ we have $\norm{E(\sigma(T) \setminus \set\lambda)x}^2 = \lim_{n \to \infty}\lrangle{E(M_n)x, x} = 0$, so $x = E(\set\lambda)x + E(\sigma(T) \setminus\set\lambda)x = E(\set\lambda)x \in R(E(\set\lambda))$.
+    Let $\Psi$ be the functional calculus of $T$. It suffices to show $R(E(\set{\lambda})) = H_\lambda$ since $E(\set\lambda)$ is an orthogonal projection. For $x \in R(E(\set{\lambda}))$, we have $Tx = TE(\set\lambda)x = \Psi(z\chi_{\set\lambda}) = \psi(\lambda\chi_{\set\lambda}) = \lambda E(\set\lambda)x = \lambda x$. Conversely, for $x \in H_\lambda$, letting $M_n = \set{z \in \sigma(T) \mid \abs{z - \lambda} \geq 1/n}$, the functions $f_n : \sigma(T) \to \C$ given by $z \mapsto \frac{\chi_{M_n}(z)}{\lambda - z}$ are bounded and measurable, and so $E(M_n)x = \Psi(f_n)\Psi(\lambda - z)x = \Psi(f_n)(\lambda I - T)x = 0$. Since $E_{x, x}$ is a measure and $M_n \nearrow \sigma(T) \setminus \set\lambda$, we have $\norm{E(\sigma(T) \setminus \set\lambda)x}^2 = \lim_{n \to \infty}\lrangle{E(M_n)x, x} = 0$, so $x = E(\set\lambda)x + E(\sigma(T) \setminus\set\lambda)x = E(\set\lambda)x \in R(E(\set\lambda))$.
 \end{proof}
 We are now equipped to prove the spectral theorem, which we state explicitly.
 \begin{theorem}[The spectral theorem for unbounded self-adjoint operators]
@@ -246,8 +250,8 @@ As in the spectral theorem for compact operators, we will reason about the eigen
 \end{definition}
 Since each $E_{x, x}$ is a finite measure on $\R$, the spectral resolution determines the spectral measure $E$. The following theorem describes the spectrum and eigenvalues of $T$ in terms of this spectral resolution.
 % [[Explicit description]]
-\begin{theorem}
-    Let $T$ be self-adjoint, $E$ its spectral measure. Then for $\mu \in \R$,
+\begin{theorem}\label{eigenvaldecomp}
+    Let $T$ be self-adjoint, and $E$ its spectral measure. Then for $\mu \in \R$,
     \begin{enumerate}
         \item $\mu \in \EV(T)$ if and only if $E_\mu \neq E_{\mu^-}$, where $E_{\mu^-}(x) = \lim_{\lambda \to \mu^-}E_\lambda(x)$;
         \item If $\mu \in \EV(T)$, then $E(\set{\mu}) = E_\mu - E_{\mu^-}$ is orthogonal projection onto $N(\mu I - T)$; and
@@ -257,30 +261,28 @@ Since each $E_{x, x}$ is a finite measure on $\R$, the spectral resolution deter
 \begin{proof}
     Let $F$ be the spectral measure of $\U(T)$. By the proof of the spectral theorem we have $E(\set\mu) = F\brac{\set{\frac{i - \mu}{-i - \mu}}}$, and $N(\mu I - T) = N(\frac{i - \mu}{-i - \mu}I - \U(T))$. We have $E_{\mu^-} = E((-\infty, \lambda) \cap \sigma(T))$ and thus $E_{\mu} - E_{\mu^-} = E(\set\lambda)$, so $(1)$ and $(2)$ reduce to applying lemma \ref{bdnormaleigen} to $\U(T)$. For $(3)$, as $\sigma(T)$ is closed, there is $(\a, \b) \ni \mu$ disjoint from $\sigma(T)$, and $E_\lambda = E_\a$ for $\lambda \in (\a, \b)$. Conversely, if $\lambda \mapsto E_\lambda$ is constant on $J = (\a, \b) \ni \mu$, then $E(J) = 0$ for $g \in \M_\infty(\sigma(T))$ given by $t \mapsto \frac{\chi_{\R \setminus J}(t)}{\mu - t}$, we have $g(t)(\lambda - t) = \chi_{\R \setminus J}$, so by proposition \ref{psiprops} we get $\brac{\int g dE}(\mu I - T) \subset (\mu I - T)\brac{\int g dE} = E(\R \setminus J) = I$.
 \end{proof}
-We have obtained [[relate to course - real hilbert spaces + result suggestive that complex structure is unnecessary]]
-\begin{definition}
-    $\sigma(T) \defeq \set{\lambda \in \R \mid \lambda I - T \text{ is injective}, R(\lambda I - T) = H}$
-\end{definition}
+The fact that our results for complex Hilbert spaces still involve real spectra should suggest that an analogous result should hold for real Hilbert spaces. We have also only dealt with real Hilbert spaces, so such a result would tie well with the results we have already seen.
 \begin{theorem}
     Let $H$ be a real Hilbert space, and $T$ be a self-adjoint operator on $H$. Then there is a unique spectral measure $E$ with $T = \int \lambda dE$.
 \end{theorem}
 \begin{proof}
     Let $H_\C$ and $T_\C$ be the complexifications of $H$ and $T$ respectively, with $D(T_\C) = D(T) + iD(T)$. Then $T_\C$ is also self-adjoint, and $\sigma(A) = \sigma(A_\C)$ as $\sigma(A_\C) \subseteq \R$. Let $U : H_\C \to H_\C$ be the conjugation map $x + iy \mapsto x - iy$. Then $T_\C = UT_\C U^{-1}$, aetting $E$ be the spectral measure of $T_\C$, we get another spectral measure $F : B(\sigma(A_\C)) \to L(H_\C)$ with $F(M) = UE(M)U^{-1}$. This gives $\int g dF = U\brac{\int g dE}U^{-1}$ for real-valued $g \in \M(\sigma(T_\C))$, and in particular we obtain $\int \lambda dF = UT_\C U^{-1} = T_\C$, so by uniqueness we have $F = E$, and so $\xi + i \eta \defeq E(M)(x + i0) = UE(M)U^{-1}(x + i0) = \xi - i \eta$, so $E(M)(x + i0) = \xi + i0$ for any $x \in H$, and so $E_\R(M) = E(M)|_H$ is orthogonal projection in $H$, so $E_\R$ is a spectral measure on $\sigma(A) = \sigma(A_\C)$ with values in $L(H)$. Since $E_\R$ is determined by the spectral measure of $A_\C$, $E_\R$ is the unique spectral measure on $\sigma(A)$.
 \end{proof} % Possibly change notation for $U$
+The eigenvalue decomposition in theorem \ref{eigenvaldecomp} hence also holds for such operators on real Hilbert spaces.
 
-The spectral theorem
+% The spectral theorem
 
-[[The normal case? (18.10; 18.14) -- maybe sketch]]
+% [[The normal case? (18.10; 18.14) -- maybe sketch]]
 
-[[Cayley transformations -- bijection; pullbacks -- may be better in spec meas section]]
+% [[Cayley transformations -- bijection; pullbacks -- may be better in spec meas section]]
 
 
 
-Eigenvalue decomposition (prop 18.14 + 20.15)
+% Eigenvalue decomposition (prop 18.14 + 20.15)
 
-The real case:
+% The real case:
 
-Define complexifications; involution gives another spectral measure -- they agree, so we get a well-defined restriction to $H$.
+% Define complexifications; involution gives another spectral measure -- they agree, so we get a well-defined restriction to $H$.
 
 \section{References}
 References:
