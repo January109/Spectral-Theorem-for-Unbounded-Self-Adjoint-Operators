@@ -1,0 +1,234 @@
+\usepackage[a4paper, margin=1.5cm]{geometry}
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{graphicx}
+% \usepackage{tocloft}
+\usepackage{tkz-euclide}
+\usepackage{tikz-cd}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{hyperref}
+\usepackage{dsfont}
+\usetikzlibrary{babel}
+\usetikzlibrary{calc}
+
+\usepackage{amsthm}
+
+% Paragraph formatting
+\setlength{\parindent}{20pt}
+
+% Title
+\author{Stanley Li}
+\date{}
+
+% Symbol shortcuts
+% Number sets
+\newcommand{\A}{\mathbb{A}} % Algebraic integers
+\newcommand{\C}{\mathbb{C}} % Complex numbers
+\newcommand{\F}{\mathbb{F}} % Arbitrary field
+\newcommand{\K}{\mathbb{K}} % Arbitrary field
+\newcommand{\N}{\mathbb{N}} % Natural numbers
+\newcommand{\Q}{\mathbb{Q}} % Rational numbers
+\newcommand{\Z}{\mathbb{Z}} % Integers
+\newcommand{\1}{\mathds{1}} % Characteristic function
+
+% Miscellaneous
+\newcommand{\B}{\mathcal{B}} % Script B
+\renewcommand{\d}{\mathcal{D}}
+\newcommand{\D}{\mathfrak{D}} % Script D; Different of a number field.
+\newcommand{\g}{\mathfrak{g}} % Lie algebra g
+\newcommand{\I}{\mathcal{I}} % Script I
+\renewcommand{\P}{\mathcal{P}} % Power set
+\newcommand{\p}{\mathfrak{p}} % Prime ideal p
+\newcommand{\q}{\mathfrak{q}} % Prime ideal q
+\newcommand{\R}{\mathbb{R}} % Real numbers
+\renewcommand{\S}{\mathbb{S}} % Fancy S
+\newcommand{\from}{\leftarrow}
+\renewcommand{\o}{\mathcal{O}}
+\newcommand{\Proj}{\mathbb{P}}
+\newcommand{\x}{\mathfrak{x}}
+\renewcommand{\k}{\mathcal{K}}
+\newcommand{\f}{\mathbf{F}}
+\newcommand{\G}{\mathcal{G}}
+\renewcommand{\r}{\mathbf{r}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\X}{\mathcal{X}}
+\renewcommand{\H}{\mathbb{H}}
+\newcommand{\m}{\mathfrak{m}}
+
+\newcommand{\T}{\mathbf{T}}
+
+% Vector space variables
+\newcommand{\U}{\mathbf{U}}
+\newcommand{\V}{\mathcal{V}}
+\newcommand{\W}{\mathcal{W}}
+
+\renewcommand{\L}{\mathcal{L}}
+
+\newcommand{\card}[1]{\ol{\ol{#1}}} % Cardinality (Analysis 1 notation)
+\newcommand{\inc}{\hookrightarrow} % Inclusion
+\newcommand{\surj}{\twoheadrightarrow} % Surjection
+
+% Miscellaneous symbols shortcuts
+\renewcommand{\a}{\alpha}
+\renewcommand{\b}{\beta}
+\newcommand{\e}{\varepsilon}
+\newcommand{\vp}{\varphi}
+\newcommand{\Tau}{\mathcal{T}}
+
+% Formatting shortcuts
+\newcommand{\defeq}{\vcentcolon=} % Definition
+\newcommand{\n}{\newline}
+\newcommand{\np}{\newpage}
+
+\newcommand{\lr}[3]{\left#1 #3 \right#2}
+\newcommand{\lrangle}[1]{\left\langle #1 \right\rangle}
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\norm}[1]{\left\| #1 \right\|}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\brac}[1]{\lr(){ #1 }}
+\newcommand{\sqbrac}[1]{\lr[]{ #1 }}
+\newcommand{\set}[1]{\lr\{\}{ #1 }}
+\newcommand{\floor}[1]{\lr\lfloor\rfloor{ #1 }}
+\newcommand{\roof}[1]{\lr\lceil\rceil{ #1 }}
+\newcommand{\cbrt}[1]{\sqrt[3]{ #1 }}
+\newcommand{\Leg}[2]{\brac{\frac{#1}{#2}}}
+\newcommand{\dd}[1]{\textbf{\underline{#1}:}}
+\newcommand{\Ortho}{\mathbb{O}}
+\newcommand{\simarrow}{\xrightarrow[\quad]{{\sim}}}
+\newcommand{\liff}{\leftrightarrow}
+\newcommand{\VVect}{\mathbb{V}\hspace{-2pt}\ect}
+
+\newcommand{\collab}{\section*{Collaboration Statement}}
+\newcommand{\qn}[1]{\section*{Question #1}}
+\newcommand{\qpart}[1]{\textbf{(#1)}}
+
+% Math operators
+\DeclareMathOperator{\Area}{Area}
+\DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\Ln}{Ln} % Setwise natural logarithm
+\DeclareMathOperator{\Arg}{Arg} % Setwise argument
+\DeclareMathOperator{\Null}{null} % Kernel is better anyway..
+\DeclareMathOperator{\Sym}{Sym} % Set of bijections
+\DeclareMathOperator{\sign}{sign} % Sign of a permutation or a real number
+\DeclareMathOperator{\Stab}{Stab} % Stabiliser of an element
+\DeclareMathOperator{\Span}{span} % Span of a set
+\DeclareMathOperator{\id}{id} % Identity map
+\DeclareMathOperator{\End}{End} % Set of endomorphisms
+\DeclareMathOperator{\Hom}{Hom} % Set of homomorphisms
+
+\DeclareMathOperator{\GL}{GL} % General linear group
+\DeclareMathOperator{\Tr}{Tr} % Trace (field or linear map)
+\DeclareMathOperator{\tr}{tr}
+
+\DeclareMathOperator{\Rad}{Rad} % Radical 
+\DeclareMathOperator{\ord}{ord} % Order
+\DeclareMathOperator{\Frac}{Frac} % Fractional field
+\DeclareMathOperator{\Pic}{Pic} % Picard group
+\DeclareMathOperator{\Char}{char} % Characteristic of a field
+\DeclareMathOperator{\Mob}{M\ddot ob} % Set of M\"obius transformations
+\DeclareMathOperator{\Triv}{Triv} % Trivial representation
+\DeclareMathOperator{\lcm}{lcm} % Lowest common multiple
+\DeclareMathOperator{\ind}{ind} % "Index", or discrete logarithm
+\DeclareMathOperator{\FS}{FS}
+\DeclareMathOperator{\Gal}{Gal} % Galois group
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\Ind}{Ind}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Conf}{Conf}
+\DeclareMathOperator{\Rep}{Rep}
+\DeclareMathOperator{\Vect}{Vect}
+\renewcommand{\sl}{\mathfrak{sl}} % Special linear lie algebra
+\renewcommand{\Re}{\text{Re}} % Real component of a complex number
+\renewcommand{\Im}{\text{Im}} % Imaginary component of a complex number
+\renewcommand{\div}{\text{div}}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\PDiv}{PDiv}
+\DeclareMathOperator{\Reg}{Reg} % Regulator
+\newcommand{\Cl}{cl} % Class group
+\newcommand{\gl}{\mathfrak{gl}}
+\DeclareMathOperator{\curl}{curl}
+\DeclareMathOperator{\interior}{int}
+\DeclareMathOperator{\Mat}{Mat}
+\DeclareMathOperator{\SL}{SL}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\ext}{ext}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\Li}{Li} % Logarithmic integral
+\DeclareMathOperator{\mult}{mult}
+\DeclareMathOperator{\inv}{inv}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\Diff}{Diff}
+\DeclareMathOperator{\BV}{BV}
+\DeclareMathOperator{\covol}{covol}
+\DeclareMathOperator{\en}{N}
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\Top}{Top}
+\DeclareMathOperator{\Gr}{Gr}
+\DeclareMathOperator{\Graph}{Graph}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Fr}{Fr}
+\DeclareMathOperator{\PSL}{PSL}
+\DeclareMathOperator{\PGL}{PGL}
+\DeclareMathOperator{\Ann}{Ann}
+\DeclareMathOperator{\EV}{EV}
+\DeclareMathOperator{\ect}{ect}
+\DeclareMathOperator{\conv}{conv}
+\DeclareMathOperator{\Borel}{Borel}
+\DeclareMathOperator{\essim}{ess.im}
+
+\newenvironment{enum}{ % To avoid annoying breaks when writing summaries
+    \begin{enumerate}
+        \vspace*{-15pt}
+        \setlength{\itemsep}{0pt}
+        \setlength{\parskip}{0pt}
+        \setlength{\parsep}{-10pt}}
+    {\end{enumerate}
+}
+\newenvironment{enum2}{ % To avoid annoying breaks when writing summaries
+    \begin{enumerate}
+        \setlength{\itemsep}{0pt}
+        \setlength{\parskip}{0pt}
+        \setlength{\parsep}{-10pt}}
+    {\end{enumerate}
+}
+\newenvironment{items}{
+    \begin{itemize}
+        \setlength{\itemsep}{0pt}
+        \setlength{\parskip}{0pt}
+        \setlength{\parsep}{-10pt}}
+    {\end{itemize}
+}
+\linespread{1.1}
+
+% For better formatting
+
+\newtheorem{theorem}{Theorem}
+% \numberwithin{theorem}{section}
+\newtheorem{corollary}{Corollary}
+% \numberwithin{corollary}{section}
+\newtheorem{lemma}{Lemma}
+% \numberwithin{lemma}{section}
+\newtheorem{definition}{Definition}
+% \numberwithin{definition}{section}
+\newtheorem{proposition}{Proposition}
+% \numberwithin{proposition}{section}
+\newtheorem{conjecture}{Conjecture}
+% \numberwithin{conjecture}{section}
+\newtheorem{computation}{Computation}
+\newtheorem{example}{Example}
+\newtheorem{remark}{Remark}
+\allowdisplaybreaks
+\setcounter{MaxMatrixCols}{20}
+
+% \documentclass[11pt]{article}
+% \usepackage{styles} 
+% \title{TBA}
+% \begin{document}
+% \maketitle
+% \end{document}
