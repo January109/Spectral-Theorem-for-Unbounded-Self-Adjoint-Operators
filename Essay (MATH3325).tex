@@ -47,7 +47,7 @@ It is also clear from the above definitions that if $S \subset T$, then $T^* \su
     An operator $T$ is \textbf{closed} if $G(T) \subseteq H \times H$ is closed.
 \end{definition}
 This relates nicely with the adjoint of an operator:
-\begin{proposition}\label{adjclosed}
+\begin{proposition}[19.5 in \hyperlink{meisevogt}{[1]}]\label{adjclosed}
     If $T$ be a densely defined operator, then $T^*$ is closed, and $N(T^*) = R(T)^\perp$.
 \end{proposition}
 We now extend sums, compositions and inverses to unbounded operators, being careful of domains in doing so.
@@ -55,7 +55,7 @@ We now extend sums, compositions and inverses to unbounded operators, being care
     Let $S$ and $T$ be operators. Then $S + T$ and $ST$ are the operators with domains $D(S + T) = D(S) \cap D(T)$ and $D(ST) = \set{x \in D(T) \mid Tx \in D(S)}$, and $(S + T)(x) \defeq S(x) + T(x)$, $(ST)(x) = S(T(x))$. If $T$ is injective, its inverse $T^{-1}$ has $D(T^{-1}) = R(T)$, and sends $Tx$ to $x$.
 \end{definition}
 These operators have the following properties with regards to closedness and adjoints. % Reword this to be better
-\begin{lemma}
+\begin{lemma}[19.8 in \hyperlink{meisevogt}{[1]}]
     Let $S$ and $T$ be operators. Then
     \begin{enumerate}
         \item if $S$ is closed and $T \in B(H)$, then $S + T$ and $S^{-1}$ are closed;
@@ -79,8 +79,8 @@ We give the generalisation of a self-adjoint operator on $H$, which we will end 
 \begin{definition}
     A densely defined operator $T$ is \textbf{self-adjoint} if $T = T^*$.
 \end{definition}
-Note that $\lrangle{Tx, y} = \lrangle{x, T^*y}$ only implies $T \subseteq T^*$, so being self-adjoint also requires $D(T^*) \subset D(T)$. By proposition \ref{adjclosed}, self-adjoint operators are closed. A slightly stronger statement holds for spectra of such operators:
-\begin{lemma}
+Note that $\lrangle{Tx, y} = \lrangle{x, T^*y}$ only implies $T \subset T^*$, so being self-adjoint also requires $D(T^*) \subseteq D(T)$. By proposition \ref{adjclosed}, self-adjoint operators are closed. A slightly stronger statement holds for spectra of such operators:
+\begin{lemma}[20.3 in \hyperlink{meisevogt}{[1]}]
     If $T$ is self-adjoint, $\sigma(T)$ is a non-empty subset of $\R$.
 \end{lemma}
 In proving the spectral theorem for unbounded self-adjoint operators, we will use the following transform to reduce to the bounded, normal case. The above result shows that $\pm iI - T$ is injective with domain $D(T)$ and range $H$ when $T$ is self-adjoint, so the operator defined below is well-defined.
@@ -98,10 +98,10 @@ We are interested in the Cayley transform as it yields the following corresponde
 % Unbounded / Symmetric operators (19.1 - 19.11) -- One-line sketches (key identities).
 % Resolutions of the identity
 In lieu of this correspondence, we state a result on the spectrum of a unitary operator, which we will need later.
-\begin{proposition}
+\begin{proposition}[12.26 in \hyperlink{rudin}{[2]}]
     Let $U \in B(H)$ be unitary. Then $\sigma(U) \subseteq S^1$.
 \end{proposition}
-\section{Functional calculi}
+\section{The functional calculus}
 A \textbf{$\mathbf{C^*}$-algebra} $X$ is an associative $\C$-algebra with unit $e$ and a Banach space, such that $\norm{xy} \leq \norm{x}\norm{y}$ for all $x$ and $y$, with a $\C$-antilinear map $* : X \to X$ such that $x^{**} = x$, $(xy)^* = y^*x^*$, and $\norm{x^*x} = \norm{x^*}\norm{x}$. If $X$ and $Y$ are $C^*$-algebras, $\varphi \in B(X, Y)$ is a \textbf{$\mathbf{*}$-homomorphism} if $\varphi(xy) = \varphi(x)\varphi(y)$ and $\varphi(x^*) = \varphi(x)^*$ for all $x$ and $y$. %, and a \textbf{$\mathbf{*}$-isomorphism} if it is invertible, and its inverse is a $*$-homomorphism. % For $a \in A$, we say $a$ is \textbf{normal} if $a^*a = aa^*$, and \textbf{invertible} if there is $b \in A$ with $ab = ba = e$. We define its \textbf{spectrum} as $\sigma(a) = \set{x \in \C \mid xa - e \text{ is invertible}}$.
 % $C^*$-algebra; $*$-homomorphism/isomorphism
 If $X \subseteq \C$ is compact, we say a map $\Psi : \M_\infty(X) \to B(H)$ is \textbf{weakly-continuous} if for any $x, y \in H$ and $(f_n)_{n \in \N}$ uniformly bounded and pointwise convergent to $f$, we have $\lrangle{\Psi(f_n)x, y} \to \lrangle{\Psi(f)x, y}$.
@@ -109,7 +109,7 @@ If $X \subseteq \C$ is compact, we say a map $\Psi : \M_\infty(X) \to B(H)$ is \
 This notion of weak continuity is similar to weak properties we have seen, and when $H = \C (= B(H))$ this reduces to the usual notion of continuity in the weak topology. We look to define the functional calculus of an operator, which associates measurable functions to operators on $H$ in a way compatible with $T$. In the remaining sections, for $X \subseteq \C$, $\Borel(X)$ denotes the Borel $\sigma$-algebra on $X$, $\M_\infty(X)$ denotes the set of bounded measurable functions $f : X \to \C$, while $\M(X)$ denotes the set of all measurable functions $f : X \to \C$. 
 
 For $X \subseteq \C$ compact, $\M_\infty(X)$ is a commutative $C^*$-algebra, by taking pointwise operations, the sup-norm, and $f^* = \ol f$ the pointwise conjugate. $B(H)$ is also a $C^*$-algebra, with the usual operator norm and composition, and $*$ sending an operator to its adjoint.
-\begin{proposition}\label{funccalc}
+\begin{proposition}[18.3, 18.4 in \hyperlink{meisevogt}{[1]}]\label{funccalc}
     If $T \in B(H)$ is normal, then there is a unique weakly-continuous $*$-homomorphism $\Psi : \M_\infty(\sigma(T)) \to B(H)$ with $\Psi(z) = T$. Further, 
     \begin{enumerate}
         \item $\Psi$ is continuous with $\norm{\Psi} = 1$;
@@ -239,7 +239,7 @@ We are now equipped to prove the spectral theorem, which we state explicitly.
     Let $T$ be self-adjoint. Then there is a unique spectral measure $E$ on $\sigma(T)$ with $T = \int z dE$. Explicitly, $E(M) = \Psi'\brac{\chi_{\varphi(M)}}$, for $\varphi : \sigma(T) \to \sigma(\U(T)) \setminus \set1$ given by $z \mapsto \frac{i - z}{-i - z}$, and $\Psi'$ the functional calculus of the Cayley transform $\U(T)$ of $T$.
 \end{theorem}
 \begin{proof}
-    First, $U \defeq \U(T)$ admits a spectral measure $F$ by Theorem \ref{specnorm}. As $I - U$ is injective by Proposition \ref{corresp}, $F(\set{1}) = 0$ by the previous lemma, so $F$ restricts to a spectral measure on $Z \defeq \sigma(U) \setminus \set1$, with $\int_{\sigma(U)} g dF = \int_Z g dF$ for all $g \in \M(Z)$. The map $f : S^1 \setminus \set1 \to \R$, $f(z) = i\frac{1 + z}{1 - z}$ is a homeomorphism and real-valued, so $B \defeq \Psi'(f) = \int_Z f dF$ is self-adjoint. Applying $\Psi'$ to the equation $f(z)(1 - z) = i(1 + z)$ with Proposition \ref{psiprops} we get $B(I - U) = i(I + U)$. Thus $A = i(I + U)(I - U)^{-1} \subset B$, and since $A$ and $B$ are self-adjoint we get $A = A^* \supset B^* = B$.
+    First, $U \defeq \U(T)$ admits a spectral measure $F$ by theorem \ref{specnorm}. As $I - U$ is injective by proposition \ref{corresp}, $F(\set{1}) = 0$ by the previous lemma, so $F$ restricts to a spectral measure on $Z \defeq \sigma(U) \setminus \set1$, with $\int_{\sigma(U)} g dF = \int_Z g dF$ for all $g \in \M(Z)$. The map $f : S^1 \setminus \set1 \to \R$, $f(z) = i\frac{1 + z}{1 - z}$ is a homeomorphism and real-valued, so $B \defeq \Psi'(f) = \int_Z f dF$ is self-adjoint. Applying $\Psi'$ to the equation $f(z)(1 - z) = i(1 + z)$ with proposition \ref{psiprops} we get $B(I - U) = i(I + U)$. Thus $A = i(I + U)(I - U)^{-1} \subset B$, and since $A$ and $B$ are self-adjoint we get $A = A^* \supset B^* = B$.
 
     The same formula given for $\varphi$ defines a homeomorphism $\R \to S^1 \setminus \set1$ with inverse $f$, and for $\varphi$ to be well-defined we must show that $f(Z) = \sigma(T)$. We note $G = \C \setminus f(Z)$ is open and $F(f|_Z^{-1}(G)) = F(\emptyset) = 0$, while if $G_0 \supsetneq G$ is open, then $G_0 \cap Y \neq \emptyset$, so $f|_Z^{-1}(G_0) \subseteq Z$ is non-empty and open in $Z$, and so has $F(f|_Z^{-1}(G_0)) \neq 0$. We thus have $f(Z) = \essim(f|_Z) = \sigma(T)$, so $f^{-1}$ has a well-defined restriction $\varphi : \sigma(T) \to Z = \sigma(\U(T)) \setminus \set1$. Defining $E = F \circ \varphi$ as above, we have that $T = \int_Z f dF = \int_Z \varphi^{-1} dF = \int_{\sigma(T)} z dF$.
 
@@ -252,7 +252,7 @@ As in the spectral theorem for compact operators, we will reason about the eigen
 \begin{definition}
     Let $T$ be a self-adjoint operator, and $E$ its spectral measure, and let $E_\lambda \defeq E((-\infty, \lambda] \cap \sigma(T))$. Then $(E_\lambda)_{\lambda \in \R}$ is the \textbf{spectral resolution} of $E$.
 \end{definition}
-Since each $E_{x, x}$ is a finite measure on $\R$, the spectral resolution determines the spectral measure $E$. Using the spectral resolution, we obtain the following description of the spectrum and eigenvalues of $T$.
+Since each $E_{x, x}$ is a finite measure on $\sigma(T)$, the spectral resolution determines the spectral measure $E$. Using the spectral resolution, we obtain the following description of the spectrum and eigenvalues of $T$.
 % [[Explicit description]]
 \begin{theorem}\label{eigenvaldecomp}
     Let $T$ be self-adjoint, and $E$ its spectral measure. Then for $\mu \in \R$,
@@ -296,5 +296,5 @@ The eigenvalue decomposition in theorem \ref{eigenvaldecomp} hence also holds fo
 % Meise-Vogt
 [1] \hypertarget{meisevogt}{\textsc{R. Meise and D. Vogt}, (1997), \emph{Introduction to Functional Analysis}, Oxford University Press, Oxford, 198 - 230.}
 
-[2] \textsc{W. Rudin}, (1991), \emph{Functional Analysis}, McGraw-Hill, New Jersey.
+[2] \hypertarget{rudin}{\textsc{W. Rudin}, (1991), \emph{Functional Analysis}, McGraw-Hill, New Jersey.}
 \end{document}
