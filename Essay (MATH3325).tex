@@ -9,7 +9,7 @@
 
 % For a compact, self-adjoint operator $T$ on a Hilbert space $H$, we have a 
 
-For a compact, self-adjoint operator $T$ on a Hilbert space $H$, we have a decomposition into orthogonal projections $T = \sum_{n \in \N}\lambda_n P_{E_n}$ for mutually orthogonal finite-dimensional subspaces $E_n$, and in this essay we describe how this generalises to a much larger class of operators. These will be partial linear maps with domain a subspace of $H$, with an associated notion of being self-adjoint. 
+For a compact, self-adjoint operator $T$ on a Hilbert space $H$, we have a decomposition into orthogonal projections $T = \sum_{n \in \N}\lambda_n P_{E_n}$ for mutually orthogonal finite-dimensional subspaces $E_n$, and in this essay we describe a generalisation to a much larger class of operators, and the theory behind its proof. The class of operators will be partial linear maps with domain a subspace of $H$, with an associated notion of being self-adjoint. 
 
 Unlike in the compact case, we cannot guarantee existence of eigenvalues, or that such an operator splits into countably many orthogonal projections up to scale, and so in the generalisation we replace this countable sum with an integral against a suitable notion of a projection-valued measure $E$ on a subset of $\C$, so that $T$ has a ``diagonal decomposition'' $\int \lambda dE$. The proof relies heavily on a correspondence between general self-adjoint operators and a certain class of unitary operators. We combine this with a way to convert measurable functions into operators related to $T$, alongside the spectral theorem for normal, bounded operators.
 
@@ -23,7 +23,7 @@ We will deal mostly with the complex case as we will have more tools to work wit
 
 % Denote the set of complex-measurable functions on a space $Y$ by $\M(Y)$, and the bounded complex-measurable functions by $\M_\infty(Y)$. 
 \section{Unbounded operators}
-We give some basic definitions and properties of unbounded operators. Most of the proofs in this section are elementary, and so will either be omitted or given a brief sketch, and the full proofs can be found in \ref{meisevogt}.
+We give some basic definitions and properties of unbounded operators. Most of the proofs in this section are elementary, and so will either be omitted or given a brief sketch, and the full proofs can be found in \hyperlink{meisevogt}{[1]}.
 
 An \textbf{unbounded operator $T$} on a Hilbert space $H$ is a linear map defined on a linear subspace $D(T)$ of $H$, and taking values in $H$. In this case, $D(T)$ is the \textbf{domain} of $T$, and we write $N(T) \defeq \set{x \in D(T) \mid Tx = 0}$, $R(T) \defeq \set{Tx \mid x \in D(T)}$ and $G(T) \defeq \set{(x, Tx) \in H \times H \mid x \in D(T)}$ for the \textbf{null space}, \textbf{range} and \textbf{graph of $T$} respectively. We say that $T$ \textbf{extends} $S$ if $D(S) \subseteq D(T)$ and $T|_{D(S)} = S$, and write $S \subset T$ for this. We say $T$ is \textbf{densely defined} if $\ol{D(T)} = H$.
 
@@ -188,7 +188,7 @@ As in lemma \ref{bdint}, we will write $\int f dE$ for $\psi(f)$ as above. This 
 % Possibly make this into a definition.
 It will be convenient to characterise the spectrum of $\int f dE$ in terms of $f$, and our characterisation will use the following notion:
 \begin{definition}
-    Let $E$ be a spectral measure on $Y$ and $f \in \M(Y)$. The \textbf{essential range $\essim(f)$} is such that $\essim(f)^c \subseteq \C$ is the largest open subset whose preimage under $f$ has measure zero.
+    Let $E$ be a spectral measure on $Y$ and $f \in \M(Y)$. The \textbf{essential range $\essim(f)$ (with respect to $E$)} is such that $\essim_E(f)^c \subseteq \C$ is the largest open subset whose preimage under $f$ has measure zero.
 \end{definition} % Rewrite this
 \begin{proposition}\label{essimspec} % Can possibly fudge a bit of this
     Let $E$ be a spectral measure. Then for any $f \in \M(Y)$,
@@ -202,8 +202,7 @@ It will be convenient to characterise the spectrum of $\int f dE$ in terms of $f
     
     Letting $Y_\lambda = f^{-1}(\set\lambda)$, any $x \in R(E(Y_\lambda))$ has $\psi(f)x = \lambda x$ as $f\chi_{Y_\lambda} = \lambda\chi_{Y_\lambda}$. Thus for $\lambda \in \essim_E(f)$, if $E(Y_\lambda) \neq 0$ we are done, and if $E(Y_\lambda) = 0$, letting $M_n = f^{-1}(B(\lambda, 1/n)) = \set{y \in Y \mid \abs{\lambda - f(y)} < 1/n}$, we must have $E(M_n) \neq 0$. Choosing $x_n \in R(E(M_n))$ with $\norm{x_n} = 1$, we get $\norm{\lambda x_n - \int f dE x_n} = \norm{\psi(\lambda - f)}\norm{x_n} \leq \norm{\lambda - f}_\infty \leq 1/n$, so $\brac{\lambda I - \int f dE}x_n \to 0$. Now if $\lambda \in \rho\brac{\int f dE}$, then since $\lambda I - \int f dE$ is closed by proposition \ref{psiprops}, $\brac{\lambda I - \int f dE}^{-1} \in B(H)$ by lemma \ref{closedprops}, and we would have $x_n = \brac{\lambda I - \int f dE}^{-1}\brac{\lambda I - \int f dE}x_n \to 0$. Since $\norm{x_n} = 1$ this is not possible, so $\lambda \in \sigma\brac{\int f dE}$.
 \end{proof}
-
-We will want to use the correspondence we established in proposition \ref{corresp}, and to reduce to the bounded normal case we require the following.
+To use the correspondence in proposition \ref{corresp}, we use the following result to reduce to the Cayley transform.
 \begin{lemma}
     Let $Y, Z \subseteq \C$, $\varphi : Y \to Z$ be a homeomorphism, and $F : \Borel(Z) \to B(H)$ be a spectral measure on $Z$. Then $E = F \circ \varphi : \Borel(Y) \to B(H)$ given by $E(M) = F(\varphi(M))$ is a spectral measure on $Y$, satisfying
     $$
@@ -253,7 +252,7 @@ As in the spectral theorem for compact operators, we will reason about the eigen
 \begin{definition}
     Let $T$ be a self-adjoint operator, and $E$ its spectral measure, and let $E_\lambda \defeq E((-\infty, \lambda] \cap \sigma(T))$. Then $(E_\lambda)_{\lambda \in \R}$ is the \textbf{spectral resolution} of $E$.
 \end{definition}
-Since each $E_{x, x}$ is a finite measure on $\R$, the spectral resolution determines the spectral measure $E$. The following theorem describes the spectrum and eigenvalues of $T$ in terms of this spectral resolution.
+Since each $E_{x, x}$ is a finite measure on $\R$, the spectral resolution determines the spectral measure $E$. Using the spectral resolution, we obtain the following description of the spectrum and eigenvalues of $T$.
 % [[Explicit description]]
 \begin{theorem}\label{eigenvaldecomp}
     Let $T$ be self-adjoint, and $E$ its spectral measure. Then for $\mu \in \R$,
@@ -290,9 +289,12 @@ The eigenvalue decomposition in theorem \ref{eigenvaldecomp} hence also holds fo
 % Define complexifications; involution gives another spectral measure -- they agree, so we get a well-defined restriction to $H$.
 
 \section{References}
-References:
 
-Meise-Vogt
 
-Rudin
+% References:
+
+% Meise-Vogt
+[1] \hypertarget{meisevogt}{\textsc{R. Meise and D. Vogt}, (1997), \emph{Introduction to Functional Analysis}, Oxford University Press, Oxford, 198 - 230.}
+
+[2] \textsc{W. Rudin}, (1991), \emph{Functional Analysis}, McGraw-Hill, New Jersey.
 \end{document}
