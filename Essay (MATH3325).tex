@@ -11,7 +11,7 @@
 
 For a compact, self-adjoint operator $T$ on a Hilbert space $H$, we have a decomposition into orthogonal projections $T = \sum_{n \in \N}\lambda_n P_{E_n}$ for mutually orthogonal finite-dimensional subspaces $E_n$, and in this essay we describe a generalisation to a much larger class of operators, and the theory behind its proof. The class of operators will be partial linear maps with domain a subspace of $H$, with an associated notion of being self-adjoint. 
 
-Unlike in the compact case, we cannot guarantee existence of eigenvalues, or that such an operator splits into countably many orthogonal projections up to scale, and so in the generalisation we replace this countable sum with an integral against a suitable notion of a projection-valued measure $E$ on a subset of $\C$, so that $T$ has a ``diagonal decomposition'' $\int \lambda dE$. The proof relies heavily on a correspondence between general self-adjoint operators and a certain class of unitary operators. We combine this with a way to convert measurable functions into operators related to $T$, alongside the spectral theorem for normal, bounded operators.
+Unlike in the compact case, we cannot guarantee existence of eigenvalues, or that such an operator splits into countably many orthogonal projections up to scale, and so in the generalisation we replace this countable sum with an integral against a suitable notion of a projection-valued measure $E$ on a subset of $\C$, so that $T$ has a ``diagonal decomposition'' $\int \lambda dE$. The proof relies heavily on a correspondence between general self-adjoint operators and a certain class of unitary operators, which corresponds to a map $\R \to S^1 \setminus \set1$. We combine this with a way to convert measurable functions into operators related to $T$, alongside the spectral theorem for normal, bounded operators.
 
 We will deal mostly with the complex case as we will have more tools to work with in this case, and briefly discuss how the real version of this theorem follows from this.
 
@@ -22,7 +22,7 @@ We will deal mostly with the complex case as we will have more tools to work wit
 % Notation: $B(H)$ for bounded operators, $H$ Hilbert space, $\Borel(X)$ for Borel $\sigma$-algebra. 
 
 % Denote the set of complex-measurable functions on a space $Y$ by $\M(Y)$, and the bounded complex-measurable functions by $\M_\infty(Y)$. 
-\section{Unbounded operators}
+\section{Unbounded Operators}
 We give some basic definitions and properties of unbounded operators. Most of the proofs in this section are elementary, and so will either be omitted or given a brief sketch, and the full proofs can be found in \hyperlink{meisevogt}{[1]}.
 
 An \textbf{unbounded operator $T$} on a Hilbert space $H$ is a linear map defined on a linear subspace $D(T)$ of $H$, and taking values in $H$. In this case, $D(T)$ is the \textbf{domain} of $T$, and we write $N(T) \defeq \set{x \in D(T) \mid Tx = 0}$, $R(T) \defeq \set{Tx \mid x \in D(T)}$ and $G(T) \defeq \set{(x, Tx) \in H \times H \mid x \in D(T)}$ for the \textbf{null space}, \textbf{range} and \textbf{graph of $T$} respectively. We say that $T$ \textbf{extends} $S$ if $D(S) \subseteq D(T)$ and $T|_{D(S)} = S$, and write $S \subset T$ for this. We say $T$ is \textbf{densely defined} if $\ol{D(T)} = H$.
@@ -63,7 +63,7 @@ These operators have the following properties with regards to closedness and adj
     \end{enumerate}
 \end{lemma}
 % give commentary on spectra
-For spectra of unbounded operators, the resolvent will also require having image $H$, on top of being bijective.
+To generalise spectra to unbounded operators, the resolvent also requires having image $H$, on top of being bijective.
 \begin{definition}
     Let $H$ be a Hilbert space over $F = \R$ or $\C$, and $T$ be an operator on $H$. The \textbf{resolvent set} of $T$ is $\rho(T) \defeq \set{z \in F \mid N(zI - T) = 0, R(zI - T) = H}$, and the \textbf{spectrum} of $T$ is $\sigma(T) \defeq F \setminus \rho(T)$.
 \end{definition}
@@ -92,23 +92,23 @@ We are interested in the Cayley transform as it yields the following corresponde
     There is a one-to-one correspondence between unbounded self-adjoint operators $T$ and unitary operators $U \in B(H)$ with $I - U$ injective, sending a self-adjoint operator $T$ to its Cayley transform $\mathbf U = \mathbf U(T) \defeq (iI - T)(-iI - T)^{-1}$, and such a unitary operator $U$ to $\mathbf T = \mathbf T(U) \defeq i(I + U)(I - U)^{-1}$, with $D(\mathbf T) = R(I - U)$.
 \end{proposition}
 \begin{proof}
-    The Cayley transform of an operator $T$ is unitary as $\norm{(iI - T)(x)}^2 = \norm{T(x)}^2 + \norm{x}^2 = \norm{(-iI - T)(x)}^2$. For $T$ self-adjoint, $I - \U(T)$ is injective as for $h = (iI - T)^{-1}(x)$ we have $(iI - T)(h) = U(x) = x = (-iI - T)(h)$, so $h = 0$ and thus $x = 0$. To show $\T \defeq \T(U)$ is self-adjoint, $\T$ is densely defined as $R(I - U)^\perp = N((I - U)^*) = N(I - U^{-1}) = N(I - U) = \set{0}$. We can show $\lrangle{\T(x), y} = \lrangle{x, \T(y)}$ by direct computation, and for $y \in D(\T^*)$, $z = \T^*y$, we can show that $U(z + iy) = z - iy$, and thus $y = (I - U)\brac{\frac1{2i}(z + iy)} \in R(I - U) = D(\T)$. Checking that $\U$ and $\T$ are mutual inverses is similar to showing $I - \U(T)$ is injective.
+    First, $\U(T)$ is unitary as $\norm{(iI - T)(x)}^2 = \norm{T(x)}^2 + \norm{x}^2 = \norm{(-iI - T)(x)}^2$. For $T$ self-adjoint, $I - \U(T)$ is injective as for $h = (iI - T)^{-1}(x)$ we have $(iI - T)(h) = U(x) = x = (-iI - T)(h)$, so $h = 0$ and thus $x = 0$. To show $\T \defeq \T(U)$ is self-adjoint, $\T$ is densely defined as $R(I - U)^\perp = N((I - U)^*) = N(I - U^{-1}) = N(I - U) = \set{0}$. We can show $\lrangle{\T(x), y} = \lrangle{x, \T(y)}$ by direct computation, and for $y \in D(\T^*)$, $z = \T^*y$, we can show that $U(z + iy) = z - iy$, and thus $y = (I - U)\brac{\frac1{2i}(z + iy)} \in R(I - U) = D(\T)$. Checking that $\U$ and $\T$ are mutual inverses is similar to showing $I - \U(T)$ is injective.
 \end{proof}
 % 20.2. (+ sa implies closed), 20.3; 20.5 (one-line), 20.6 + 20.7
 % Unbounded / Symmetric operators (19.1 - 19.11) -- One-line sketches (key identities).
 % Resolutions of the identity
 In lieu of this correspondence, we state a result on the spectrum of a unitary operator, which we will need later.
-\begin{proposition}[12.26 in \hyperlink{rudin}{[2]}]
-    Let $U \in B(H)$ be unitary. Then $\sigma(U) \subseteq S^1$.
+\begin{proposition}[17.6, 17.17 in \hyperlink{meisevogt}{[1]}]
+    Let $U \in B(H)$ be unitary. Then $\sigma(U)$ is a non-empty subset of $S^1$.
 \end{proposition}
-\section{The functional calculus}
+\section{The Functional Calculus}
 A \textbf{$\mathbf{C^*}$-algebra} $X$ is an associative $\C$-algebra with unit $e$ and a Banach space, such that $\norm{xy} \leq \norm{x}\norm{y}$ for all $x$ and $y$, with a $\C$-antilinear map $* : X \to X$ such that $x^{**} = x$, $(xy)^* = y^*x^*$, and $\norm{x^*x} = \norm{x^*}\norm{x}$. If $X$ and $Y$ are $C^*$-algebras, $\varphi \in B(X, Y)$ is a \textbf{$\mathbf{*}$-homomorphism} if $\varphi(xy) = \varphi(x)\varphi(y)$ and $\varphi(x^*) = \varphi(x)^*$ for all $x$ and $y$. %, and a \textbf{$\mathbf{*}$-isomorphism} if it is invertible, and its inverse is a $*$-homomorphism. % For $a \in A$, we say $a$ is \textbf{normal} if $a^*a = aa^*$, and \textbf{invertible} if there is $b \in A$ with $ab = ba = e$. We define its \textbf{spectrum} as $\sigma(a) = \set{x \in \C \mid xa - e \text{ is invertible}}$.
 % $C^*$-algebra; $*$-homomorphism/isomorphism
 If $X \subseteq \C$ is compact, we say a map $\Psi : \M_\infty(X) \to B(H)$ is \textbf{weakly-continuous} if for any $x, y \in H$ and $(f_n)_{n \in \N}$ uniformly bounded and pointwise convergent to $f$, we have $\lrangle{\Psi(f_n)x, y} \to \lrangle{\Psi(f)x, y}$.
 
-This notion of weak continuity is similar to weak properties we have seen, and when $H = \C (= B(H))$ this reduces to the usual notion of continuity in the weak topology. We look to define the functional calculus of an operator, which associates measurable functions to operators on $H$ in a way compatible with $T$. In the remaining sections, for $X \subseteq \C$, $\Borel(X)$ denotes the Borel $\sigma$-algebra on $X$, $\M_\infty(X)$ denotes the set of bounded measurable functions $f : X \to \C$, while $\M(X)$ denotes the set of all measurable functions $f : X \to \C$. 
+This notion of weak continuity is similar to weak properties we have seen, and when $H = \C (= B(H))$ this reduces to the usual notion of continuity in the weak topology. We look to define the functional calculus of an operator, which associates measurable functions to operators on $H$ in a way compatible with $T$. 
 
-For $X \subseteq \C$ compact, $\M_\infty(X)$ is a commutative $C^*$-algebra, by taking pointwise operations, the sup-norm, and $f^* = \ol f$ the pointwise conjugate. $B(H)$ is also a $C^*$-algebra, with the usual operator norm and composition, and $*$ sending an operator to its adjoint.
+In the remaining sections, for $X \subseteq \C$, $\Borel(X)$ denotes the Borel $\sigma$-algebra on $X$, $\M_\infty(X)$ denotes the set of bounded measurable functions $f : X \to \C$, while $\M(X)$ denotes the set of all measurable functions $f : X \to \C$. For $X \subseteq \C$ compact, $\M_\infty(X)$ is a commutative $C^*$-algebra, by taking pointwise operations, the sup-norm, and $f^* = \ol f$ the pointwise conjugate. $B(H)$ is also a $C^*$-algebra, with the usual operator norm and composition, and $*$ sending an operator to its adjoint.
 \begin{proposition}[18.3, 18.4 in \hyperlink{meisevogt}{[1]}]\label{funccalc}
     If $T \in B(H)$ is normal, then there is a unique weakly-continuous $*$-homomorphism $\Psi : \M_\infty(\sigma(T)) \to B(H)$ with $\Psi(z) = T$. Further, 
     \begin{enumerate}
@@ -142,7 +142,7 @@ For $X \subseteq \C$ compact, $\M_\infty(X)$ is a commutative $C^*$-algebra, by 
         \item For every $x \in H$, $E_{x, x} : M \mapsto \lrangle{E(M)x, x}$ is a Radon measure in $Y$.
     \end{enumerate}
 \end{definition}
-Throughout the remaining results, $Y \subseteq \C$ is a fixed subset, and $E$ is a fixed spectral measure on $Y$. To define integrals of measurable functions with respect to spectral measures, we want to assign to each $f \in \M(Y)$ a densely defined operator on $H$ which corresponds to ``integrating'' the function with respect to the spectral measure. We first establish this for bounded measurable functions.
+Throughout this section, $Y \subseteq \C$ denotes a fixed subset. To define integrals of measurable functions with respect to spectral measures, we assign to each $f \in \M(Y)$ a densely defined operator on $H$ which corresponds to ``integrating'' the function with respect to the spectral measure. We first establish this for bounded measurable functions.
 \begin{lemma}\label{bdint}
     Let $E$ be a spectral measure on $Y$. Then for each $f \in \M_\infty(Y)$ there is a unique operator $\int f dE \in B(H)$ such that for each $x \in H$:
     \begin{enumerate}
@@ -272,7 +272,7 @@ The fact that our results for complex Hilbert spaces still involve real spectra 
 \begin{proof}
     Let $H_\C$ and $T_\C$ be the complexifications of $H$ and $T$ respectively, with $D(T_\C) = D(T) + iD(T)$. Then $T_\C$ is also self-adjoint, and $\sigma(A) = \sigma(A_\C)$ as $\sigma(A_\C) \subseteq \R$. Let $U : H_\C \to H_\C$ be the conjugation map $x + iy \mapsto x - iy$. Then $T_\C = UT_\C U^{-1}$, aetting $E$ be the spectral measure of $T_\C$, we get another spectral measure $F : B(\sigma(A_\C)) \to L(H_\C)$ with $F(M) = UE(M)U^{-1}$. This gives $\int g dF = U\brac{\int g dE}U^{-1}$ for real-valued $g \in \M(\sigma(T_\C))$, and in particular we obtain $\int \lambda dF = UT_\C U^{-1} = T_\C$, so by uniqueness we have $F = E$, and so $\xi + i \eta \defeq E(M)(x + i0) = UE(M)U^{-1}(x + i0) = \xi - i \eta$, so $E(M)(x + i0) = \xi + i0$ for any $x \in H$, and so $E_\R(M) = E(M)|_H$ is orthogonal projection in $H$, so $E_\R$ is a spectral measure on $\sigma(A) = \sigma(A_\C)$ with values in $L(H)$. Since $E_\R$ is determined by the spectral measure of $A_\C$, $E_\R$ is the unique spectral measure on $\sigma(A)$.
 \end{proof} % Possibly change notation for $U$
-The eigenvalue decomposition in theorem \ref{eigenvaldecomp} hence also holds for such operators on real Hilbert spaces.
+The eigenvalue decomposition in theorem \ref{eigenvaldecomp} hence also holds for self-adjoint operators on real Hilbert spaces.
 
 % The spectral theorem
 
