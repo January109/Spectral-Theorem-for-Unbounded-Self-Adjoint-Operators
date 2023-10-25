@@ -267,7 +267,7 @@ The idea is that $H_0 = \set{x \in X \mid \lim_{t \to 0} \norm{S(t)x - x} \to 0}
 \begin{theorem}
     Let $T$ be self-adjoint with spectral measure $E$, and $\sigma(T) \subseteq [0, \infty)$. Then $-T$ generates a $C_0$-semigroup $S$ with $\sup\norm{S(t)} = 1$, given by
     $$
-        S(t) = \int_{\sigma(T)} e^{-\lambda t} dE(\lambda)
+        S(t) = \int_{\sigma(T)} e^{-\lambda t} dE
     $$
 \end{theorem}
 \begin{proof}
@@ -275,7 +275,7 @@ The idea is that $H_0 = \set{x \in X \mid \lim_{t \to 0} \norm{S(t)x - x} \to 0}
 \end{proof}
 We consider an application of this to the Laplacian, and a more thorough treatment of the basic spectral properties of the Laplacian can be found in Example 10.39 of \hyperlink{jvn}{[3]}. Let $\Delta = -\sum_{k = 1}^n \frac{\partial^2}{\partial x_i^2}$ be the Laplacian on $L^2(\R^n)$, initially defined on $C^2(\R^n)$. This admits a natural self-adjoint extension to $H^2(\R^n)$ by taking weak-partial derivatives, and we can compute its spectrum to be $[0, \infty)$ by noting that it corresponds to multiplication by $\norm{x}^2$ under the Fourier transform. The associated initial value problem $u'(t) = \Delta u(t)$ is exactly the heat equation, and by the above theorem, letting $E_\Delta$ be the spectral measure of $\Delta$, we find that the associated heat semigroup $H$ is given by
 $$
-    H(t) = \int_0^\infty e^{-\lambda t}dE_\Delta(\lambda)
+    H(t) = \int_0^\infty e^{-\lambda t}dE_\Delta
 $$
 Thus we get an explicit form for the solutions of the heat equation on $\R^n$.
 % The spectral theorem
